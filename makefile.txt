@@ -1,0 +1,38 @@
+# Compiler
+CC = gcc
+
+# Compiler flags
+CFLAGS = -Wall -g
+
+# Output executable
+TARGET = bank
+
+# Source files (MATCH YOUR FILE NAMES)
+SRC = main.c \
+      new_account.c \
+      update_acc_details.c \
+      Delete_account.c \
+      View_account_details.c \
+      deposit_money.c \
+      withdraw_money.c \
+      support_fun.c \
+      search_account.c \
+      ext.c
+
+# Object files
+OBJ = $(SRC:.c=.o)
+
+# Default target
+all: $(TARGET)
+
+# Link object files
+$(TARGET): $(OBJ)
+	$(CC) $(OBJ) -o $(TARGET)
+
+# Compile source files
+%.o: %.c bank_structure.h
+	$(CC) $(CFLAGS) -c $<
+
+# Clean build files
+clean:
+	rm -f $(OBJ) $(TARGET)
